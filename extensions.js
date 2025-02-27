@@ -4,7 +4,7 @@ export const FormExtension = {
   name: "FormExtension",
   type: "response",
   match: ({ trace }) =>
-    trace.type === "ext_form" || trace.payload.name === "ext_form",
+    trace.type === "ext_form" || trace.payload?.name === "ext_form",
   render: ({ trace, element }) => {
     const disableFooterInputs = (isDisabled) => {
       const chatDiv = document.getElementById("voiceflow-chat");
@@ -105,7 +105,7 @@ export const MapExtension = {
   name: "Maps",
   type: "response",
   match: ({ trace }) =>
-    trace.type === "ext_map" || trace.payload.name === "ext_map",
+    trace.type === "ext_map" || trace.payload?.name === "ext_map",
   render: ({ trace, element }) => {
     const GoogleMap = document.createElement("iframe");
     const { apiKey, origin, destination, zoom, height, width } = trace.payload;
@@ -125,7 +125,7 @@ export const VideoExtension = {
   name: "Video",
   type: "response",
   match: ({ trace }) =>
-    trace.type === "ext_video" || trace.payload.name === "ext_video",
+    trace.type === "ext_video" || trace.payload?.name === "ext_video",
   render: ({ trace, element }) => {
     const videoElement = document.createElement("video");
     const { videoURL, autoplay, controls } = trace.payload;
@@ -151,7 +151,7 @@ export const TimerExtension = {
   name: "Timer",
   type: "response",
   match: ({ trace }) =>
-    trace.type === "ext_timer" || trace.payload.name === "ext_timer",
+    trace.type === "ext_timer" || trace.payload?.name === "ext_timer",
   render: ({ trace, element }) => {
     const { duration } = trace.payload || 5;
     let timeLeft = duration;
@@ -177,7 +177,7 @@ export const FileUploadExtension = {
   name: "FileUpload",
   type: "response",
   match: ({ trace }) =>
-    trace.type === "ext_fileUpload" || trace.payload.name === "ext_fileUpload",
+    trace.type === "ext_fileUpload" || trace.payload?.name === "ext_fileUpload",
   render: ({ trace, element }) => {
     const fileUploadContainer = document.createElement("div");
     fileUploadContainer.innerHTML = `
@@ -255,7 +255,7 @@ export const KBUploadExtension = {
   name: "KBUpload",
   type: "response",
   match: ({ trace }) =>
-    trace.type === "ext_KBUpload" || trace.payload.name === "ext_KBUpload",
+    trace.type === "ext_KBUpload" || trace.payload?.name === "ext_KBUpload",
   render: ({ trace, element }) => {
     const apiKey = trace.payload.apiKey || null;
     const maxChunkSize = trace.payload.maxChunkSize || 1000;
@@ -341,7 +341,7 @@ export const DateExtension = {
   name: "Date",
   type: "response",
   match: ({ trace }) =>
-    trace.type === "ext_date" || trace.payload.name === "ext_date",
+    trace.type === "ext_date" || trace.payload?.name === "ext_date",
   render: ({ trace, element }) => {
     const formContainer = document.createElement("form");
 
@@ -443,7 +443,7 @@ export const ConfettiExtension = {
   name: "Confetti",
   type: "effect",
   match: ({ trace }) =>
-    trace.type === "ext_confetti" || trace.payload.name === "ext_confetti",
+    trace.type === "ext_confetti" || trace.payload?.name === "ext_confetti",
   effect: ({ trace }) => {
     const canvas = document.querySelector("#confetti-canvas");
 
@@ -564,7 +564,7 @@ export const CalendlyExtension = {
   type: "effect",
   match: ({ trace }) => {
     return (
-      trace.type === "ext_calendly" || trace.payload.name === "ext_calendly"
+      trace.type === "ext_calendly" || trace.payload?.name === "ext_calendly"
     );
   },
   effect: ({ trace }) => {
@@ -580,7 +580,7 @@ export const MultiSelectExtension = {
   type: "response",
   match: ({ trace }) =>
     trace.type === "ext_multiselect" ||
-    trace.payload.name === "ext_multiselect",
+    trace.payload?.name === "ext_multiselect",
   render: ({ trace, element }) => {
     const { options, maxSelections } = trace.payload;
     const multiSelectContainer = document.createElement("form");
@@ -927,7 +927,7 @@ export const CustomImageExtension = {
   type: "response",
   match: ({ trace }) =>
     trace.type === "ext_custom_image" ||
-    trace.payload.name === "ext_custom_image",
+    trace.payload?.name === "ext_custom_image",
   render: ({ trace, element }) => {
     const { imgURL } = trace.payload;
 
@@ -972,7 +972,7 @@ export const RankOptionsExtension = {
   type: "response",
   match: ({ trace }) =>
     trace.type === "ext_rankoptions" ||
-    trace.payload.name === "ext_rankoptions",
+    trace.payload?.name === "ext_rankoptions",
   render: ({ trace, element }) => {
     const { options } = trace.payload;
 
@@ -1098,7 +1098,7 @@ export const DropdownExtension = {
   name: "DropdownExtension",
   type: "response",
   match: ({ trace }) =>
-    trace.type === "ext_dropdown" || trace.payload.name === "ext_dropdown",
+    trace.type === "ext_dropdown" || trace.payload?.name === "ext_dropdown",
   render: ({ trace, element }) => {
     const disableFooterInputs = (isDisabled) => {
       const chatDiv = document.getElementById("voiceflow-chat");
@@ -1269,7 +1269,7 @@ export const CarouselExtension = {
   name: "Carousel",
   type: "response",
   match: ({ trace }) =>
-    trace.type === "ext_carousel" || trace.payload.name === "ext_carousel",
+    trace.type === "ext_carousel" || trace.payload?.name === "ext_carousel",
   render: ({ trace, element }) => {
     console.log("trace:", trace);
     console.log("element:", element);
@@ -1626,7 +1626,7 @@ export const SkipButtonExtension = {
   type: "effect",
   match: ({ trace }) => {
     return (
-      trace.type === "ext_skipButton" || trace.payload.name === "ext_skipButton"
+      trace.type === "ext_skipButton" || trace.payload?.name === "ext_skipButton"
     );
   },
   effect: ({ trace }) => {
@@ -1700,7 +1700,7 @@ export const SettingsScreenExtension = {
   type: "effect",
   match: ({ trace }) =>
     trace.type === "ext_settingsScreen" ||
-    trace.payload.name === "ext_settingsScreen",
+    trace.payload?.name === "ext_settingsScreen",
   effect: ({ trace }) => {
     const chatDiv = document.getElementById("voiceflow-chat");
     if (chatDiv) {
@@ -1937,7 +1937,7 @@ export const StripeBuyButtonExtension = {
   type: "response",
   match: ({ trace }) =>
     trace.type === "ext_stripeBuyButton" ||
-    trace.payload.name === "ext_stripeBuyButton",
+    trace.payload?.name === "ext_stripeBuyButton",
   render: ({ trace, element }) => {
     const { publishableKey, buyButtonId, sessionId } = trace.payload;
 
@@ -2057,7 +2057,7 @@ export const DelayEffectExtension = {
   name: "DelayEffect",
   type: "effect",
   match: ({ trace }) =>
-    trace.type === "ext_delay" || trace.payload.name === "ext_delay",
+    trace.type === "ext_delay" || trace.payload?.name === "ext_delay",
   effect: async ({ trace }) => {
     const { delay } = trace.payload;
 
@@ -2072,7 +2072,7 @@ export const ActivateAvatarExtension = {
   type: "effect",
   match: ({ trace }) =>
     trace.type === "ext_activateAvatar" ||
-    trace.payload.name === "ext_activateAvatar",
+    trace.payload?.name === "ext_activateAvatar",
   effect: ({ trace }) => {
     const { isActive } = trace.payload;
 
@@ -2121,7 +2121,7 @@ export const LanguageDetectionExtension = {
   name: "BrowserData",
   type: "effect",
   match: ({ trace }) =>
-    trace.type === "ext_language" || trace.payload.name === "ext_language",
+    trace.type === "ext_language" || trace.payload?.name === "ext_language",
   effect: async ({ trace }) => {
     const lang = navigator.language || navigator.userLanguage;
 
@@ -2141,7 +2141,7 @@ export const WaitingAnimationExtension = {
   type: "response",
   match: ({ trace }) =>
     trace.type === "ext_waitingAnimation" ||
-    trace.payload.name === "ext_waitingAnimation",
+    trace.payload?.name === "ext_waitingAnimation",
   render: async ({ trace, element }) => {
     window.vf_done = true;
     await new Promise((resolve) => setTimeout(resolve, 250));
@@ -2371,7 +2371,7 @@ export const OpenAIAssistantsV2Extension = {
   type: "response",
   match: ({ trace }) =>
     trace.type === "ext_openai_assistants_v2" ||
-    (trace.payload && trace.payload.name === "ext_openai_assistants_v2"),
+    (trace.payload && trace.payload?.name === "ext_openai_assistants_v2"),
 
   render: async ({ trace, element }) => {
     const { payload } = trace || {};
@@ -2438,13 +2438,11 @@ export const OpenAIAssistantsV2Extension = {
 
     element.appendChild(waitingContainer);
 
-    // Remove the waiting container function
     const removeWaitingContainer = () => {
       if (element.contains(waitingContainer)) {
         element.removeChild(waitingContainer);
       }
 
-      // Restore the background when the message starts streaming
       if (messageElement) {
         messageElement.classList.remove("thinking-phase");
       }
@@ -2454,7 +2452,6 @@ export const OpenAIAssistantsV2Extension = {
     responseContainer.classList.add("response-container");
     element.appendChild(responseContainer);
 
-    // Function to handle retries
     const fetchWithRetries = async (
       url,
       options,
@@ -2482,7 +2479,6 @@ export const OpenAIAssistantsV2Extension = {
       let sseResponse;
 
       if (!threadId || !threadId.match(/^thread_/)) {
-        // No threadId provided, or it doesn't match 'thread_...', so create a new one
         sseResponse = await fetchWithRetries(
           "https://api.openai.com/v1/threads/runs",
           {
@@ -2503,7 +2499,6 @@ export const OpenAIAssistantsV2Extension = {
           }
         );
       } else {
-        // Existing threadId, so just continue that conversation
         await fetchWithRetries(
           `https://api.openai.com/v1/threads/${threadId}/messages`,
           {
@@ -2529,7 +2524,7 @@ export const OpenAIAssistantsV2Extension = {
             body: JSON.stringify({
               assistant_id: assistantId,
               stream: true,
-              tool_choice: { type: "file_search" }, // Enforce file_search
+              tool_choice: { type: "file_search" }, 
             }),
           }
         );
@@ -2542,7 +2537,6 @@ export const OpenAIAssistantsV2Extension = {
       let partialAccumulator = "";
       let firstTextArrived = false;
 
-      // Store the newly created thread ID if we see it in the SSE.
       let extractedThreadId = threadId || null;
 
       while (!done) {
