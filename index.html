@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voiceflow Chat</title>
+</head>
+<body style="
+  background: linear-gradient(135deg, #000000, #1b1818);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+">
+
+<style>
+  #voiceflow-chat {
+    display: block !important;
+    font-family: 'Open Sans', sans-serif;
+  }
+</style>   
+
+  <script type="module">
+    import {
+      BrowserDataExtension,
+      OpenAIAssistantsV2Extension,
+      DisableInputExtension,
+      PlaceholderExtension,
+      CustomScreenExtension,
+      FeedbackExtension,
+    } from "./extensions.js";
+
+    (function(d, t) {
+        var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+        v.onload = function() {
+          window.voiceflow.chat.load({
+            verify: { projectID: '67bdbdd4ef166ee18b6d5efd' },
+            url: 'https://general-runtime.voiceflow.com',
+            versionID: 'production',
+            launch: {
+              event: {
+                type: "launch",
+                payload: {
+                  currentURL: window.location.href,
+                  currentTime: new Date().toISOString(),
+                  userLanguage: navigator.language || navigator.userLanguage,
+                },
+              },
+            },
+            assistant: {
+              stylesheet: "style-bot.css",
+              persistence: 'sessionStorage',
+              extensions: [
+                BrowserDataExtension,
+                OpenAIAssistantsV2Extension,
+                DisableInputExtension,
+                PlaceholderExtension,
+                CustomScreenExtension,
+                FeedbackExtension,
+              ],
+            },
+          });
+        }
+        v.src = "https://nextsolution-ai.github.io/Cannaone-DK/bundle.mjs"; 
+        v.type = "text/javascript"; 
+        s.parentNode.insertBefore(v, s);
+    })(document, 'script');
+  </script>
+
+</body>
+</html>
